@@ -1,6 +1,6 @@
 import requests
 
-token = 'XbnZSXuVbTnUBxSzfgPLwRmeV1nl2p1UlKyr0fmwkPL'
+token = 'f2k6cUN8M4GvDcMxbBUaZAnP0YNVmDTUzAfhtNxuRB8'
 
 
 def lineNotifyMessage(token, msg):
