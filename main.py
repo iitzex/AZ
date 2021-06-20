@@ -57,7 +57,7 @@ def main():
             if status != 'state-full':
                 print(f"{i.a.get('href')}")
         except IndexError:
-            msg += link
+            msg += f'"{link}"'
             # head = 'https://register.cgmh.org.tw/'
             # msg += f'\n"{head}{i.a.get("href")}"'
             # print(f'{msg}')
