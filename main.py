@@ -7,6 +7,8 @@ from bs4 import BeautifulSoup
 
 from linenotify import send
 
+link = 'https://register.cgmh.org.tw/Department/3/30990D'
+
 
 def parse():
     headers = {
@@ -27,7 +29,7 @@ def parse():
 
     response = requests.get(
         # AZ
-        'https://register.cgmh.org.tw/Department/3/30990D', headers=headers)
+        link, headers=headers)
     # moderna
     # 'https://register.cgmh.org.tw/Department/3/30990E', headers=headers)
 
@@ -36,36 +38,30 @@ def parse():
 
 def main():
     r = parse()
-    # print(r.text)
     soup = BeautifulSoup(r.text, 'lxml')
 
-    # print(soup.prettify())
     b = soup.find('tbody')
-    # print(b)
 
     msgs = []
-
     for i in b.find_all('td'):
         if len(i.text) < 3:
             continue
 
         msg = ''
-        # print(i.parent.th.text)
+        print(i.parent.th.text)
         msg += i.parent.th.text
-        # print(f'{i.text.strip()}')
+        print(f'{i.text.strip()}')
         msg += f'{i.text.strip()}'
         try:
             status = i.a.get('class')[0]
             if status != 'state-full':
                 print(f"{i.a.get('href')}")
         except IndexError:
-            head = 'https://register.cgmh.org.tw/'
-            msg += f'\n"{head}{i.a.get("href")}"'
+            msg += link
+            # head = 'https://register.cgmh.org.tw/'
+            # msg += f'\n"{head}{i.a.get("href")}"'
             # print(f'{msg}')
             msgs.append(msg)
-            # send(msg)
-            # subprocess.run(["afplay", "beep.mp3"])
-            # time.sleep(60)
 
     if msgs != []:
         for m in msgs:
