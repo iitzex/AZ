@@ -7,8 +7,8 @@ from bs4 import BeautifulSoup
 
 from linenotify import send
 
-# link = 'https://register.cgmh.org.tw/Department/3/30990D'
-link = 'https://register.cgmh.org.tw/Department/3/30990E'
+link = 'https://register.cgmh.org.tw/Department/3/30990D'
+token = 'f2k6cUN8M4GvDcMxbBUaZAnP0YNVmDTUzAfhtNxuRB8'
 
 
 def parse():
@@ -37,7 +37,7 @@ def parse():
     return response
 
 
-def main():
+def main(name):
     r = parse()
     soup = BeautifulSoup(r.text, 'lxml')
 
@@ -58,7 +58,7 @@ def main():
             if status != 'state-full':
                 print(f"{i.a.get('href')}")
         except IndexError:
-            msg += f'莫德納 "{link}"'
+            msg += f'\n{name}門診 "{link}"'
             # head = 'https://register.cgmh.org.tw/'
             # msg += f'\n"{head}{i.a.get("href")}"'
             # print(f'{msg}')
@@ -67,13 +67,13 @@ def main():
     if msgs != []:
         for m in msgs:
             print(m)
-            send(m)
+            send(token, m)
         # subprocess.run(["afplay", "beep.mp3"])
     time.sleep(60)
 
 
 if __name__ == '__main__':
     while True:
-        main()
+        main('AZ')
         print('--', datetime.now())
         time.sleep(6)

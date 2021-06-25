@@ -1,7 +1,5 @@
 import requests
 
-token = 'f2k6cUN8M4GvDcMxbBUaZAnP0YNVmDTUzAfhtNxuRB8'
-
 
 def lineNotifyMessage(token, msg):
     headers = {
@@ -19,10 +17,10 @@ def lineNotifyMessage(token, msg):
     return r.status_code
 
 
-def send(msg):
+def send(token, msg):
     result = lineNotifyMessage(token, msg)
     print(result)
 
 
 if __name__ == '__main__':
-    send('meow')
+    send(token, 'meow')
