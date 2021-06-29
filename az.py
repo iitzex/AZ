@@ -12,27 +12,28 @@ token = 'f2k6cUN8M4GvDcMxbBUaZAnP0YNVmDTUzAfhtNxuRB8'
 
 
 def parse():
+    cookies = {
+        'ASP.NET_SessionId': 'usq2w0diwqcyi2u1vlihf1hs',
+        '__RequestVerificationToken': '98CLL6_80xZo3GUc5va2BWCYvDizZ94lC6qryITue1L8qFsVTLDeU5wOWssdx5i9wiV8G_6Wrn5QcGw8lhkNhXnboeawwz_4htwR7g6Gw_M1',
+        'dtCookie': 'v_4_srv_1_sn_3809793E40C2A33F54385F5603F76CAC_perc_100000_ol_0_mul_1',
+    }
+
     headers = {
         'Connection': 'keep-alive',
         'Cache-Control': 'max-age=0',
         'DNT': '1',
         'Upgrade-Insecure-Requests': '1',
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
         'Sec-GPC': '1',
-        'Sec-Fetch-Site': 'same-origin',
+        'Sec-Fetch-Site': 'none',
         'Sec-Fetch-Mode': 'navigate',
         'Sec-Fetch-User': '?1',
         'Sec-Fetch-Dest': 'document',
-        'Referer': 'https://register.cgmh.org.tw/Register/3',
         'Accept-Language': 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
     }
 
-    response = requests.get(
-        # AZ
-        link, headers=headers)
-    # moderna
-    # 'https://register.cgmh.org.tw/Department/3/30990E', headers=headers)
+    response = requests.get(link, headers=headers, cookies=cookies)
 
     return response
 
