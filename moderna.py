@@ -44,25 +44,29 @@ def main():
     b = soup.find('tbody')
 
     msgs = []
-    for i in b.find_all('td'):
-        if len(i.text) < 3:
-            continue
 
-        msg = ''
-        print(i.parent.th.text)
-        msg += i.parent.th.text
-        print(f'{i.text.strip()}')
-        msg += f'{i.text.strip()}'
-        try:
-            status = i.a.get('class')[0]
-            if status != 'state-full':
-                print(f"{i.a.get('href')}")
-        except IndexError:
-            msg += f'\n莫德納門診 "{link}"'
-            # head = 'https://register.cgmh.org.tw/'
-            # msg += f'\n"{head}{i.a.get("href")}"'
-            # print(f'{msg}')
-            msgs.append(msg)
+    try:
+        for i in b.find_all('td'):
+            if len(i.text) < 3:
+                continue
+
+            msg = ''
+            print(i.parent.th.text)
+            msg += i.parent.th.text
+            print(f'{i.text.strip()}')
+            msg += f'{i.text.strip()}'
+            try:
+                status = i.a.get('class')[0]
+                if status != 'state-full':
+                    print(f"{i.a.get('href')}")
+            except IndexError:
+                msg += f'\n莫德納門診 "{link}"'
+                # head = 'https://register.cgmh.org.tw/'
+                # msg += f'\n"{head}{i.a.get("href")}"'
+                # print(f'{msg}')
+                msgs.append(msg)
+    except AttributeError:
+        pass
 
     if msgs != []:
         for m in msgs:
