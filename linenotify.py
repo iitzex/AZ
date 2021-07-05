@@ -10,10 +10,14 @@ def lineNotifyMessage(token, msg):
     payload = {'message': msg}
 
     # Post 封包出去給 Line Notify
-    r = requests.post(
-        "https://notify-api.line.me/api/notify",
-        headers=headers,
-        params=payload)
+
+    try:
+        r = requests.post(
+            "https://notify-api.line.me/api/notify",
+            headers=headers,
+            params=payload)
+    except OSError:
+        pass
     return r.status_code
 
 
